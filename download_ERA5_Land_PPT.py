@@ -14,9 +14,12 @@ __email__ = "mdekauwe@gmail.com"
 import os
 import cdsapi
 import sys
+import datetime
 
 def get_data(start_year, end_year, start_month, end_month, start_day, end_day,
              lon_min, lat_min, lon_max, lat_max):
+
+    st = datetime.datetime.now()
 
     c = cdsapi.Client()
     variables_list = 'total_precipitation'
@@ -50,7 +53,7 @@ def get_data(start_year, end_year, start_month, end_month, start_day, end_day,
         },
         'era5land_' + str(year) + '.nc')
 
-        print('Process completed in ', datetime.datetime.now()-start)
+        print('Process completed in ', datetime.datetime.now()-st)
 
 
 if __name__ == '__main__':
