@@ -27,15 +27,17 @@ def get_data(start_year, end_year, start_month, end_month, start_day, end_day,
     years = [str(start_year +i ) for i in range(end_year-start_year+1)]
     days = [str(start_day +i ).zfill(2) for i in range(end_day-start_day+1)]
     months = [str(start_month +i ).zfill(2) for i in range(end_month-start_month+1)]
-    times = ['00:00', '01:00', '02:00','03:00', '04:00', '05:00', '06:00', '07:00',\
-             '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00',\
-             '15:00', '16:00', '17:00','18:00', '19:00', '20:00','21:00', \
-             '22:00', '23:00']
+    #times = ['00:00', '01:00', '02:00','03:00', '04:00', '05:00', '06:00', '07:00',\
+    #         '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00',\
+    #         '15:00', '16:00', '17:00','18:00', '19:00', '20:00','21:00', \
+    #         '22:00', '23:00']
+
+
 
     # Test
-    days = ['11']
-    months = ['06']
-    times = ['08:00']
+    #days = ['11']
+    #months = ['06']
+    #times = ['08:00']
 
     for year in years:
         ofname = os.path.join(out_dir, 'era5land_' + str(year) + '.nc')
@@ -47,6 +49,7 @@ def get_data(start_year, end_year, start_month, end_month, start_day, end_day,
             'month': months,
             'day': days,
             'time': times,
+            'time': '00:00',
             'area': [
                 lat_min, lon_min, lat_max, lon_max
             ],
@@ -59,8 +62,8 @@ def get_data(start_year, end_year, start_month, end_month, start_day, end_day,
 
 if __name__ == '__main__':
 
-    start_year = 2010
-    end_year = 2011
+    start_year = 1950
+    end_year = 1950
     start_month = 1
     end_month = 12
     start_day = 1
@@ -71,7 +74,7 @@ if __name__ == '__main__':
                                           81.7879590189, 9.8240776636] # Sri Lanka
 
 
-    out_dir = "sri_lanka_ppt"
+    out_dir = "/Users/xj21307/Desktop/sri_lanka_ppt"
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
 
