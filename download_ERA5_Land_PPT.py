@@ -17,7 +17,7 @@ import sys
 import datetime
 
 def get_data(start_year, end_year, start_month, end_month, start_day, end_day,
-             lon_min, lat_min, lon_max, lat_max):
+             lon_min, lat_min, lon_max, lat_max, out_dir):
 
     st = datetime.datetime.now()
 
@@ -38,6 +38,7 @@ def get_data(start_year, end_year, start_month, end_month, start_day, end_day,
     times = ['08:00']
 
     for year in years:
+        ofname = os.path.join(out_dir, 'era5land_' + str(year) + '.nc')
         c.retrieve(
         'reanalysis-era5-land',
         {
@@ -51,7 +52,7 @@ def get_data(start_year, end_year, start_month, end_month, start_day, end_day,
             ],
             'format': 'netcdf',
         },
-        'era5land_' + str(year) + '.nc')
+        ofname)
 
         print('Process completed in ', datetime.datetime.now()-st)
 
@@ -69,5 +70,11 @@ if __name__ == '__main__':
     lon_min, lat_min, lon_max, lat_max = [79.6951668639, 5.96836985923, \
                                           81.7879590189, 9.8240776636] # Sri Lanka
 
+
+    out_dir = "sri_lanka_ppt"
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
+
+
     get_data(start_year, end_year, start_month, end_month, start_day, end_day,
-             lon_min, lat_min, lon_max, lat_max)
+             lon_min, lat_min, lon_max, lat_max, out_dir)
