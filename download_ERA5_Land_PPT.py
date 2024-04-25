@@ -48,7 +48,7 @@ def get_data(start_year, end_year, start_month, end_month, start_day, end_day,
             'year': years,
             'month': months,
             'day': days,
-            'time': times,
+            #'time': times,
             'time': '00:00',
             'area': [
                 lat_min, lon_min, lat_max, lon_max
